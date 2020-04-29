@@ -3,10 +3,9 @@ from bs4 import BeautifulSoup
 import os
 import random
 import time
-#from urllib.parse import urljoin
 
 
-
+#generating random sequence to name the extracted images
 def generateRandomSequence():
     seq = ""
     letters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z",
@@ -18,6 +17,36 @@ def generateRandomSequence():
     return seq
 
 
+#writing imagees to the result folder present in the file directory
+def write_images(links):
+
+    print("")
+    choice = int(input("How many images do you want to extract ? : "))
+    print("")
+
+    #creating the Result directory if it already doesn't exits
+    dir_name = "Result"
+    if os.path.isdir(dir_name) == False:
+        print("[+] Creating Directory Named '{0}'".format(dir_name))
+        os.mkdir(dir_name)
+        
+   
+    n = 1               #maintinging the counter for user set limit
+    for i in links:
+        try:
+            req = requests.get(i)
+            if(n > choice):         #break if the desired limit has reached
+                break
+            print("[+] Extracting Image #",n)
+            with open(("{0}/" + generateRandomSequence() + ".jpg").format(dir_name),"wb") as img:
+                img.write(req.content)
+            n += 1
+            req.close()
+        except:
+            print("[-] Skipping Current Image Due To Connection Problems")
+            continue
+
+#main scrape function
 def scrape():
     while True:
         print("*** enter q to quit ***")
@@ -35,37 +64,20 @@ def scrape():
 
         soup = BeautifulSoup(r.content,"html.parser")
 
+        #getting the links from the scrapped html code
         li = soup.find_all("a",class_="iusc")
         links = [eval(l['m'])['murl'] for l in li]
         len(links)
 
-
+        
         print("{0} results found with the search term: {1}".format(len(links), term))
         choice = input("Do You Want To Extract The Images? Y or N ")
-    
+        
         if choice == "y" or choice == "Y":
-            write_images(links)
+            write_images(links) #writing images using the previously defined function
 
         r.close()
     
-    #if(int(limit) > 35):
-        #scrape(term, limit - 35, offset)
-
-def write_images(links):
-    
-    dir_name = "Result"
-    if os.path.isdir(dir_name) == False:
-        print("[+] Creating Directory Named '{0}'".format(dir_name))
-        os.mkdir(dir_name)
-   
-    n = 1
-    for i in links:
-        req = requests.get(i)
-        print("[+] Extracting Image #",n)
-        with open(("{0}/" + generateRandomSequence() + ".jpg").format(dir_name),"wb") as img:
-            img.write(req.content)
-        n += 1
-        req.close()
 
 
 
