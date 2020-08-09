@@ -2,9 +2,9 @@
 INSTRUCTIONS:
 
   FOR WINDOWS:
-1) Download the entire repo
-2) Open the image_extractor.exe file inside the image_extractor directory to run the application
-3) The downloaded(scraped) images with be saved in a directory named ' Result ' which will be created inside the directory of the            image_extractor
+1> Just go to release, unzip the ImageExtractor_Windows.zip and use it.
+2> It will be present as image_scrapper.exe in directory
+3> The downloaded(scraped) images with be saved in a directory named ' Result ' which will be created where image_extractor.exe is present.
 
   FOR LINUX:
 1) Download the entire repo
@@ -14,4 +14,3 @@ INSTRUCTIONS:
    python image_extractor.py 
 4) The downloaded(scraped) images with be saved in a directory named ' Result ' which will be created where image_extractor.py is present.
 
-CONTRIBUTE TO THE PROJECT IF YOU FIND IT USEFUL.
