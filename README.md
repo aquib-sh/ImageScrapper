@@ -2,9 +2,9 @@
 INSTRUCTIONS:
 
   FOR WINDOWS:
-1> Just go to release, unzip the ImageExtractor_Windows.zip and use it.
-2> It will be present as image_scrapper.exe in directory
-3> The downloaded(scraped) images with be saved in a directory named ' Result ' which will be created where image_extractor.exe is present.
+1) Just go to release, unzip the ImageExtractor_Windows.zip and use it.
+2) It will be present as image_scrapper.exe in directory
+3>) The downloaded(scraped) images with be saved in a directory named ' Result ' which will be created where image_extractor.exe is present.
 
   FOR LINUX:
 1) Download the entire repo
